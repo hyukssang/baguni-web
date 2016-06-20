@@ -1,0 +1,312 @@
+button{
+	border: 0;
+	background-color: white;
+}
+img{
+	width: 100%;
+}
+.align-left{
+	position: absolute;
+	left: 0;
+}
+.align-right{
+	position: absolute;
+	right: 0;
+}
+.bg{
+	background-image: url("../img/photo_newyork.png");	
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	
+	height: 35vh;
+}
+
+/*Navbar*/
+.nav-all{
+	list-style-type: none;
+}
+.nav-all ul{
+	margin: 0;
+}
+.nav-all li{
+	display: inline-block;
+
+	padding-left: 0;
+
+	text-align: center;
+}
+.nav-upper{
+	background-color: black;
+
+	height: 40px;
+
+	text-align: center;
+}
+.nav-mid{
+	background-color: #e8e8e8;
+
+	height: 52px;
+
+	text-align: right;
+}
+.nav-lower{
+	height: 81px;
+
+	text-align: justify;
+}
+.stretch{
+	background-color: black;
+
+	display: inline-block;
+
+	width: 100%;
+	height: 50px;
+
+	position: relative;
+	top: -57px;
+
+	z-index: -1;
+}
+.btn-add{
+	background-color: #e8e8e8;
+
+	border: solid 1px black;
+	border-radius: 25px;
+
+	margin: 5px;
+
+	width: 42px;
+	height: 42px;
+}
+
+/*Second View folders layout*/
+.bags-inside{
+	background-color: black;
+
+	overflow-x: scroll;
+
+	white-space: nowrap;
+
+	margin-bottom: 0;
+	padding-top: 40px;
+}
+.bags-inside li{
+	background-color: white;
+
+	border: solid 1px black;
+	border-radius: 10px 10px 0px 0px;
+
+	display: inline-block;
+
+	width: 25vw;
+	height: 40px;
+	
+	text-align: center;
+	line-height: 40px;
+}
+.price-bar{
+	background-color: #505050;
+
+	border: solid 1px black;
+	border-radius: 20px;
+
+	color: #e8e8e8;
+
+	display: inline-block;
+
+	width: 70%;
+	height: 42px;
+	line-height: 42px;
+
+	margin: 5px;
+	padding-left: 10px;
+
+	text-align: left;
+}
+
+.item{
+	border: solid 2px #d8d8d8;
+	border-radius: 8px;
+
+	padding: 0px;
+}
+.item .row{
+	border-top: solid 1px #d8d8d8;
+	border-bottom: solid 1px #d8d8d8;
+
+	display: relative;
+
+	margin: 0;
+}
+.item-checkbox{
+	position: absolute;
+	left: 5px;
+}
+.item-detail{
+	font-size: 9px;
+
+	/*line-height: 10px;*/
+
+	position: absolute;
+	right: 5px;
+
+	margin-top: 5px;
+}
+.item-detail li{
+	display: block;
+}
+.item-price{
+	display: inline-block;
+	
+	margin: auto;
+}
+.item-brand-logo{
+	width: auto;
+	height: 15px;
+
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+
+/*Modal*/
+.modal-bg{
+	border-bottom: solid 4px green;
+
+	width: 100%;
+}
+.half-circle{
+	background-color: green;
+
+	width: 140px;
+	height: 72px;
+
+	border-radius: 100px 100px 0 0;
+	-moz-border-radius: 100px 100px 0 0;
+	-webkit-border-radius: 100px 100px 0 0;
+
+	margin: 0 auto;
+
+	text-align: center;
+}
+.half-circle h4{
+	color: white;
+
+	margin: 0;
+	padding-top: 19px;
+}
+.prods>li{
+	border-bottom: solid 1px #d8d8d8;
+}
+.prod-brand-logo{
+	width: auto;
+	height: 15px;
+}
+.prod-price{
+	margin: auto;
+}
+.prod-detail li{
+	display: inline-block;
+	margin-right: 10px;
+}
+.prods>li:last-child{
+	text-align: right;
+}
+
+#checkout{
+	display:block;
+
+	width: 100%;
+	height: 38px;
+
+	position: fixed;
+	bottom: 0;
+}
+
+/*Icons*/
+.icon-text{
+	display: block;
+}
+.icon{
+	background-position: center;
+	background-repeat: no-repeat;
+
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+
+	margin: 5px;
+}
+/*.icon-xs{
+	background-position: center;
+	background-repeat: no-repeat;
+
+	display: inline-block;
+	width: 15px;
+	height: 8px;
+
+	margin-right: 5px;
+}*/
+.icon-md{
+	background-position: center;
+	background-repeat: no-repeat;
+
+	display: inline-block;
+	width: 42px;
+	height: 42px;
+
+	margin: 5px;
+}
+.icon-lg{
+	background-position: center;
+	background-repeat: no-repeat;
+
+	display: inline-block;
+	width: 73px;
+	height: 73px;
+
+	margin: 5px;
+}
+.icon-search{
+	background-image: url("../img/icons/icn_search.png");
+}
+.icon-settings{
+	background-image: url("../img/icons/icn_setting.png");
+}
+.icon-refine{
+	background-image: url("../img/icons/icn_refine.png");	
+}
+.icon-sort{
+	background-image: url("../img/icons/icn_sort.png");	
+}
+.icon-logo{
+	background-image: url("../img/icons/icn_baguni.png");	
+}
+.icon-folders{
+	background-image: url("../img/icons/icn_folders.png");	
+}
+.icon-blink{
+	background-image: url("../img/icons/icn_blink.png");	
+}
+.icon-explore{
+	background-image: url("../img/icons/icn_explore.png");	
+}
+.icon-more{
+	background-image: url("../img/icons/icn_more.png");	
+}
+.icon-purchase{
+	background-image: url("../img/icons/icn_purchase.png");	
+}
+/*.icon-size{
+	background-image: url("../img/icons/icn_size.png");	
+}
+.icon-qty{
+	background-image: url("../img/icons/icn_qty.png");	
+}*/
+.icon-left-arrow{
+	background-image: url("../img/icons/icn_left_arrow.png");	
+}
+
+
+
