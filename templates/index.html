@@ -1,0 +1,16 @@
+{% extends "base_noNavBar.html" %}
+{% block content %}
+	<div class="container div-main">
+		<div class="col-xs-2"></div>
+		<div class="col-xs-8">
+			<h3 class="intro-text"><strong>THE ONLY SHOPPING BAG YOU WILL EVER NEED.</strong></h3>	
+			
+			<div class="btn-main">
+				<a href="{{url_for('signup.signup_route')}}" role="button">SIGN UP</a>	
+				<a href="{{url_for('login.login_route')}}" role="button">LOG IN</a>
+			</div>
+		</div>
+		</div>
+		<div class="col-xs-2"></div>
+	</div>
+{% endblock%}

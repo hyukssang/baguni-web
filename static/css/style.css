@@ -83,6 +83,47 @@ img{
 	height: 42px;
 }
 
+/*Main Page layout*/
+.div-main{
+	position: absolute;
+	top: 30vh;
+}
+.intro-text{
+	text-align: center;
+	margin-bottom: 10%;
+}
+.btn-main a{
+	background-color: black;
+	color: white;
+
+	display: block;
+
+	width: 100%;
+	height: 40px;
+
+	margin-bottom: 5px;
+
+	line-height: 40px;
+	text-align: center;
+}
+
+.form-login{
+	position: absolute;
+	top: 40%;
+}
+
+.form-signup{
+	position: absolute;
+	top: 15%;
+}
+.form-signup input{
+	width: 100%;
+}
+.btn-black{
+	background-color: black;
+	color: white;
+}
+
 /*First View bags layout*/
 .baguni{
 	background-size: auto 100%;

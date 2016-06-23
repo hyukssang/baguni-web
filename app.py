@@ -6,6 +6,9 @@ import controllers
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder="templates")
 
+app.register_blueprint(controllers.main)
+app.register_blueprint(controllers.login)
+app.register_blueprint(controllers.signup)
 app.register_blueprint(controllers.baguni)
 app.register_blueprint(controllers.insideBaguni)
 

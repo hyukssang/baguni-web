@@ -1,0 +1,33 @@
+{% extends "base_noNavBar.html" %}
+{% block content %}
+	<div class="container">
+		<form action="{{url_for('signup.signup_route')}}" method="POST" class="form-signup">
+			<div class="col-xs-2"></div>
+			<div class="col-xs-8">
+				<h3><strong>Hello!</strong></h3>
+				<div class="form-group">
+					<label for="input-signup-firstname">Firstname</label>
+					<input type="text" placeholder="Firstname" name="firstname" id="input-signup-firstname">
+				</div>
+				<div class="form-group">
+					<label for="input-signup-lastname">Lastname</label>
+					<input type="text" placeholder="Lastname" name="lastname" id="input-signup-lastname">
+				</div>
+				<div class="form-group">
+					<label for="input-signup-email">Email</label>
+					<input type="email" placeholder="email@email.com" name="email" id="input-signup-email">
+				</div>
+				<div class="form-group">
+					<label for="input-signup-password">Password</label>
+					<input type="password" placeholder="Password" name="password" id="input-signup-password">
+				</div>
+				<div class="form-group">
+					<label for="input-signup-phone">Phone Number</label>
+					<input type="tel" placeholder="xxx-xxx-xxxx" name="phone" id="input-signup-phone">
+				</div>
+				<button type="submit" class="btn btn-black">Sign Me Up!</button>
+			</div>
+			<div class="col-xs-2"></div>
+		</form>
+	</div>
+{% endblock %}

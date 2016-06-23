@@ -1,31 +1,31 @@
 CREATE TABLE User(
-	username VARCHAR(20) NOT NULL,
 	firstname VARCHAR(20) NOT NULL,
 	lastname VARCHAR(20) NOT NULL,
 	password VARCHAR(256) NOT NULL,
-	email VARCHAR(256),
+	email VARCHAR(40),
 	phone VARCHAR(10) NOT NULL,
-	PRIMARY KEY (username)
+	PRIMARY KEY (email)
 );
 
 CREATE TABLE Baguni(
-	username VARCHAR(20),
-	baguniid INTEGER NOT NULL AUTO_INCREMET,
+	email VARCHAR(40),
+	baguniid INTEGER NOT NULL AUTO_INCREMENT,
 	title VARCHAR(20),
+	color VARCHAR(7),
 	PRIMARY KEY (baguniid),
-	FOREIGN KEY (username) REFERENCES User(username) ON DELETE CASCADE
+	FOREIGN KEY (email) REFERENCES User(email) ON DELETE CASCADE
 );
 
 CREATE TABLE BaguniAccess(
-	username VARCHAR(20) NOT NULL,
+	email VARCHAR(40) NOT NULL,
 	baguniid INTEGER NOT NULL,
-	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE
-	FOREIGN KEY (username) REFERENCES User(username) ON DELETE CASCADE
+	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE,
+	FOREIGN KEY (email) REFERENCES User(email) ON DELETE CASCADE
 );
 
 CREATE TABLE Item(
 	baguniid INTEGER NOT NULL,
-	itemid INTEGER NOT NULL AUTO_INCREMET,
+	itemid INTEGER NOT NULL AUTO_INCREMENT,
 	originalurl VARCHAR(256),
 	imageurl VARCHAR(256),
 	price DECIMAL(7,2),
@@ -41,7 +41,7 @@ CREATE TABLE Item(
 CREATE TABLE ItemAccess(
 	baguniid INTEGER NOT NULL,
 	itemid INTEGER NOT NULL,
-	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE
+	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE,
 	FOREIGN KEY (itemid) REFERENCES Item(itemid) ON DELETE CASCADE
 );
 
