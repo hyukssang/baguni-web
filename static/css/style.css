@@ -1,3 +1,6 @@
+a{
+	color: black;
+}
 button{
 	border: 0;
 	background-color: white;
@@ -80,6 +83,34 @@ img{
 	height: 42px;
 }
 
+/*First View bags layout*/
+.bag{
+	background-size: auto 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+
+	height: 121px;
+}
+.bag-title{
+	position: absolute;
+
+	top: 12px;
+	left: 33px;
+}
+.bag-info{
+	position: absolute;
+	
+	bottom: 0;
+	left: 33px;
+}
+.bag-green{
+	background-image: url("../img/icons/folder_green.png")
+}
+.bag-numItems{
+	margin-bottom: 0;
+}
+
+
 /*Second View folders layout*/
 .bags-inside{
 	background-color: black;
@@ -105,6 +136,8 @@ img{
 	text-align: center;
 	line-height: 40px;
 }
+
+
 .price-bar{
 	background-color: #505050;
 
@@ -125,6 +158,8 @@ img{
 	text-align: left;
 }
 
+
+/*Second View each item layout*/
 .item{
 	border: solid 2px #d8d8d8;
 	border-radius: 8px;
@@ -170,7 +205,6 @@ img{
 	bottom: 5px;
 }
 
-/*Modal*/
 .modal-bg{
 	border-bottom: solid 4px green;
 
