@@ -1,4 +1,5 @@
 from flask import Flask
+from db import *
 
 import controllers
 
@@ -9,6 +10,9 @@ app.register_blueprint(controllers.baguni)
 app.register_blueprint(controllers.insideBaguni)
 
 app.register_blueprint(controllers.api_addBaguni)
+
+app.config.from_object(TestingConfig)
+mysql.init_app(app)
 
 app.secret_key = 'never_reveal'
 
