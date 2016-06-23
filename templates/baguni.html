@@ -1,0 +1,46 @@
+{% extends "base.html"%}
+{% block content %}
+	<div class="modal fade" id="modal-add-baguni">
+		<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header"><h4>Add a Baguni!</h4></div>
+			<div class="modal-body">
+				<h5>Name of the new Baguni:</h5>
+					<input type="text" name="baguni-name">
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Add</button>
+				<button class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<!-- FIRST PAGE -->
+	<div class="bg"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="nav-all nav-mid">
+				<button class="btn-add align-left" data-toggle="modal" data-target="#modal-add-baguni"><span class="glyphicon glyphicon-plus"></span></button>
+				<a href="#"><span class="icon-md icon-refine"></span></a>
+				<a href="#"><span class="icon-md icon-sort"></span></a>
+			</nav>
+		</div>
+	</div>
+
+	<div class="container">
+		<a href="{{url_for('insideBaguni.insideBaguni_route')}}">
+			<div class="col-xs-6">
+				<div class="baguni baguni-green">
+					<h5 class="baguni-title">TITLE</h5>
+					<div class="baguni-info">
+						<p class="baguni-numItems"><span>#</span> items</p>
+						<p class="baguni-numSelected"><span>#</span> selected</p>
+					</div>
+				</div>
+			</div>
+		</a>
+	</div>
+{% endblock %}

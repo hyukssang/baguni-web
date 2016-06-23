@@ -84,35 +84,35 @@ img{
 }
 
 /*First View bags layout*/
-.bag{
+.baguni{
 	background-size: auto 100%;
 	background-repeat: no-repeat;
 	background-position: center;
 
 	height: 121px;
 }
-.bag-title{
+.baguni-title{
 	position: absolute;
 
 	top: 12px;
 	left: 33px;
 }
-.bag-info{
+.baguni-info{
 	position: absolute;
 	
 	bottom: 0;
 	left: 33px;
 }
-.bag-green{
+.baguni-green{
 	background-image: url("../img/icons/folder_green.png")
 }
-.bag-numItems{
+.baguni-numItems{
 	margin-bottom: 0;
 }
 
 
 /*Second View folders layout*/
-.bags-inside{
+.baguni-inside{
 	background-color: black;
 
 	overflow-x: scroll;
@@ -122,7 +122,7 @@ img{
 	margin-bottom: 0;
 	padding-top: 40px;
 }
-.bags-inside li{
+.baguni-inside li{
 	background-color: white;
 
 	border: solid 1px black;

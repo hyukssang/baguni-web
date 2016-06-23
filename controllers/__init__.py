@@ -1,2 +1,2 @@
-from bags import *
-from insideBags import *
+from baguni import *
+from insideBaguni import *

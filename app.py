@@ -5,10 +5,10 @@ import controllers
 # Initialize Flask app with the template folder address
 app = Flask(__name__, template_folder="templates")
 
-app.register_blueprint(controllers.bags)
-app.register_blueprint(controllers.insideBags)
+app.register_blueprint(controllers.baguni)
+app.register_blueprint(controllers.insideBaguni)
 
-app.register_blueprint(controllers.api_AddBags)
+app.register_blueprint(controllers.api_addBaguni)
 
 app.secret_key = 'never_reveal'
 
