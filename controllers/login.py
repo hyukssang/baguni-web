@@ -1,5 +1,6 @@
 from flask import *
 from db import mysql
+import encrypt
 
 login = Blueprint('login', __name__, template_folder='templates')
 
@@ -22,11 +23,25 @@ def login_route():
 		# If a user does not exist
 		if not result:
 			error = 'Email does not exist'
+		# If password does not match
 		else:
-			# If password does not match
-			if f['password'] != result[0][2]:
+			# Get the existing salt
+			dbSalt = result[0][2].split('$')[1]
+			dbPassword = result[0][2]
+
+			formPassword = encrypt.encryptPassword(dbSalt, f['password'])
+			
+			if formPassword != dbPassword:
 				error = 'Wrong password'
 			else:
-				return render_template('baguni.html')
+				session['email'] = f['email']
+				session['name'] = result[0][0] + ' ' + result[0][1]
+				user = f['email'].split('@')[0]
+				return redirect(url_for('main_user.main_user_route', user=user))
 		
 		return render_template('login.html', error = error)
+
+
+
+
+

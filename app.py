@@ -7,12 +7,13 @@ import controllers
 app = Flask(__name__, template_folder="templates")
 
 app.register_blueprint(controllers.main)
+app.register_blueprint(controllers.main_user)
 app.register_blueprint(controllers.login)
 app.register_blueprint(controllers.signup)
-app.register_blueprint(controllers.baguni)
-app.register_blueprint(controllers.insideBaguni)
+app.register_blueprint(controllers.bagunis)
 
 app.register_blueprint(controllers.api_addBaguni)
+app.register_blueprint(controllers.api_addItem)
 
 app.config.from_object(TestingConfig)
 mysql.init_app(app)

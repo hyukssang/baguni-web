@@ -8,6 +8,7 @@ button{
 img{
 	width: 100%;
 }
+
 .align-left{
 	position: absolute;
 	left: 0;
@@ -82,6 +83,24 @@ img{
 	width: 42px;
 	height: 42px;
 }
+.btn-add-black{
+	background-color: black;
+
+	border: solid 1px black;
+	border-radius: 25px;
+
+	color: white;
+
+	margin: 5px;
+
+	width: 42px;
+	height: 42px;	
+
+	position: absolute;
+	right: 5px;
+	bottom: 55px;
+
+}
 
 /*Main Page layout*/
 .div-main{
@@ -123,7 +142,9 @@ img{
 	background-color: black;
 	color: white;
 }
-
+.btn-black:hover{
+	color: #d8d8d8;
+}
 /*First View bags layout*/
 .baguni{
 	background-size: auto 100%;
@@ -131,11 +152,13 @@ img{
 	background-position: center;
 
 	height: 121px;
+
+	margin-top: 10px;
 }
 .baguni-title{
 	position: absolute;
 
-	top: 12px;
+	top: 22px;
 	left: 33px;
 }
 .baguni-info{
@@ -144,13 +167,39 @@ img{
 	bottom: 0;
 	left: 33px;
 }
+.baguni-mini{
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+	display: inline-block;
+	width: 28.4px;
+	height: 24.2px;
+
+	margin-right: 10px;
+}
 .baguni-green{
 	background-image: url("../img/icons/folder_green.png")
+}
+.baguni-red{
+	background-image: url("../img/icons/folder_red.png")
+}
+.baguni-yellow{
+	background-image: url("../img/icons/folder_yellow.png")
+}
+.baguni-purple{
+	background-image: url("../img/icons/folder_purple.png")
 }
 .baguni-numItems{
 	margin-bottom: 0;
 }
-
+.bagunis{
+	padding-bottom: 73px;
+	overflow: auto;
+}
+.radio{
+	display: inline-block;
+}
 
 /*Second View folders layout*/
 .baguni-inside{
@@ -180,7 +229,7 @@ img{
 
 
 .price-bar{
-	background-color: #505050;
+	background-color: black;
 
 	border: solid 1px black;
 	border-radius: 20px;
@@ -383,5 +432,8 @@ img{
 	background-image: url("../img/icons/icn_left_arrow.png");	
 }
 
+.error-msg{
+	color: red;
+}
 
 

@@ -1,0 +1,67 @@
+{% extends "base_navBar.html"%}
+{% block content %}
+	<div class="modal fade" id="modal-add-baguni">
+		<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header"><h4>Add a Baguni!</h4></div>
+			<div class="modal-body">
+				<h5>Name of the new Baguni:</h5>
+					<input type="text" name="baguni-name" id="input-baguni-name">
+				<h5>Choose the color of the new Baguni:</h5>
+				<div class="radio">
+					<label for="input-baguni-green">
+						<input type="radio" name="baguni-color" id="input-baguni-green" value="green">
+						<span class="baguni-mini baguni-green"></span>
+					</label>
+					<label for="input-baguni-red">
+						<input type="radio" name="baguni-color" id="input-baguni-red" value="red">
+						<span class="baguni-mini baguni-red"></span>
+					</label>
+					<label for="input-baguni-yellow">
+						<input type="radio" name="baguni-color" id="input-baguni-yellow" value="yellow">
+						<span class="baguni-mini baguni-yellow"></span>
+					</label>
+					<label for="input-baguni-purple">
+						<input type="radio" name="baguni-color" id="input-baguni-purple" value="purple">
+						<span class="baguni-mini baguni-purple"></span>
+					</label>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" id="btn-add-baguni" data-dismiss="modal">Add</button>
+				<button class="btn btn-default" data-dismiss="modal">Close</button>
+			</div>
+		</div>
+		</div>
+	</div>
+
+	<!-- FIRST PAGE -->
+	<div class="bg"></div>
+
+	<div class="container-fluid">
+		<div class="row">
+			<nav class="nav-all nav-mid">
+				<button class="btn-add align-left" data-toggle="modal" data-target="#modal-add-baguni"><span class="glyphicon glyphicon-plus"></span></button>
+				<a href="#"><span class="icon-md icon-refine"></span></a>
+				<a href="#"><span class="icon-md icon-sort"></span></a>
+			</nav>
+		</div>
+	</div>
+
+	<div class="container bagunis">
+		{% for baguni in bagunis %}
+		<a href="{{url_for('bagunis.bagunis_route', user=user, baguniid=baguni[0][1])}}">
+			<div class="col-xs-6">
+				<div class="baguni baguni-{{ baguni[0][3]}}">
+					<h5 class="baguni-title">{{baguni[0][2]}}</h5>
+					<div class="baguni-info">
+						<p class="baguni-numItems"><span>{{baguni[1]}}</span> items</p>
+						<p class="baguni-numSelected"><span>{{baguni[2]}}</span> selected</p>
+					</div>
+				</div>
+			</div>
+		</a>
+		{% endfor %}
+	</div>
+	<script src="../static/js/ajax.js"></script>
+{% endblock %}

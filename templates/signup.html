@@ -1,33 +1,43 @@
 {% extends "base_noNavBar.html" %}
 {% block content %}
 	<div class="container">
-		<form action="{{url_for('signup.signup_route')}}" method="POST" class="form-signup">
+		<form action="{{url_for('signup.signup_route')}}" method="POST" class="form-signup" id="form-signup">
 			<div class="col-xs-2"></div>
 			<div class="col-xs-8">
 				<h3><strong>Hello!</strong></h3>
 				<div class="form-group">
-					<label for="input-signup-firstname">Firstname</label>
-					<input type="text" placeholder="Firstname" name="firstname" id="input-signup-firstname">
+					<label for="input-signup-firstname" class="control-label">Firstname</label>
+					<input type="text" placeholder="Firstname" name="firstname" id="input-signup-firstname" class="form-control">
+					<span class="help-block"></span>
 				</div>
 				<div class="form-group">
-					<label for="input-signup-lastname">Lastname</label>
-					<input type="text" placeholder="Lastname" name="lastname" id="input-signup-lastname">
+					<label for="input-signup-lastname" class="control-label">Lastname</label>
+					<input type="text" placeholder="Lastname" name="lastname" id="input-signup-lastname" class="form-control">
+					<span class="help-block"></span>
 				</div>
 				<div class="form-group">
-					<label for="input-signup-email">Email</label>
-					<input type="email" placeholder="email@email.com" name="email" id="input-signup-email">
+					<label for="input-signup-email" class="control-label">Email</label>
+					<input type="email" placeholder="email@email.com" name="email" id="input-signup-email" class="form-control">
+					<span class="help-block"></span>
 				</div>
 				<div class="form-group">
-					<label for="input-signup-password">Password</label>
-					<input type="password" placeholder="Password" name="password" id="input-signup-password">
+					<label for="input-signup-password" class="control-label">Password</label>
+					<input type="password" placeholder="Password" name="password" id="input-signup-password" class="form-control">
+					<span class="help-block"></span>
 				</div>
 				<div class="form-group">
-					<label for="input-signup-phone">Phone Number</label>
-					<input type="tel" placeholder="xxx-xxx-xxxx" name="phone" id="input-signup-phone">
+					<label for="input-signup-phone" class="control-label">Phone Number</label>
+					<input type="tel" placeholder="xxx-xxx-xxxx" name="phone" id="input-signup-phone" class="form-control">
+					<span class="help-block"></span>
 				</div>
+				{% if error %}
+					<p class="error-msg">{{error}}</p>
+				{% endif %}
 				<button type="submit" class="btn btn-black">Sign Me Up!</button>
 			</div>
 			<div class="col-xs-2"></div>
 		</form>
 	</div>
+	<link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+	<script src="{{url_for('static', filename='js/signup.js')}}"></script>
 {% endblock %}

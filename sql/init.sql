@@ -3,7 +3,7 @@ CREATE TABLE User(
 	lastname VARCHAR(20) NOT NULL,
 	password VARCHAR(256) NOT NULL,
 	email VARCHAR(40),
-	phone VARCHAR(10) NOT NULL,
+	phone VARCHAR(11) NOT NULL,
 	PRIMARY KEY (email)
 );
 
@@ -31,9 +31,7 @@ CREATE TABLE Item(
 	price DECIMAL(7,2),
 	brandname VARCHAR(20),
 	itemname VARCHAR(40),
-	quantity TINYINT(3),
-	size VARCHAR(10),
-	selected TINYINT(1),
+	selected TINYINT(1) DEFAULT 0
 	PRIMARY KEY (itemid),
 	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE
 );
