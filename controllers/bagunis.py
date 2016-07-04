@@ -3,8 +3,19 @@ from db import mysql
 import parse
 bagunis = Blueprint('bagunis', __name__, template_folder='templates')
 
-@bagunis.route('/main/<user>/bagunis/<int:baguniid>', methods=['GET'])
+@bagunis.route('/main/<user>/bagunis/<int:baguniid>', methods=['GET', 'POST'])
 def bagunis_route(user, baguniid):
+	# Check if a user is logged in
+	# If not, redirect to the main page for login
+	if 'email' not in session:
+		print 'Not logged in: redirecting to main...'
+		return redirect(url_for('main.main_route'))
+
+	# Check if the url is the right url for the current user
+	session_username = session['email'].split('@')[0]
+	if session_username != user:
+		return render_template('403.html'), 403
+
 	# Check if the current Baguni is displayed to the right user
 	curBaguniid = baguniid
 
@@ -22,7 +33,6 @@ def bagunis_route(user, baguniid):
 	except IndexError:
 		return render_template('403.html'), 403
 
-	
 
 	if request.method == 'GET':
 		# Get info about items in the current Baguni from the database
@@ -51,16 +61,13 @@ def bagunis_route(user, baguniid):
 			items.append(item)
 
 		return render_template("bagunis.html", items = items)
-
-
-api_addItem = Blueprint('api_addItem', __name__)
-
-@api_addItem.route('/api/v1/addItem', methods=['POST'])
-def api_addItem_route():
 	if request.method == 'POST':
+		print 123124
+		# Add an item to the current Baguni
 		jsondata = request.get_json()
-		print jsondata['itemURL']
+		print jsondata
 		return ('', 200)
+
 
 
 

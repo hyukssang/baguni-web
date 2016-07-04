@@ -34,6 +34,7 @@ def login_route():
 			if formPassword != dbPassword:
 				error = 'Wrong password'
 			else:
+				# on Success, create a session, include username as a part of url
 				session['email'] = f['email']
 				session['name'] = result[0][0] + ' ' + result[0][1]
 				user = f['email'].split('@')[0]

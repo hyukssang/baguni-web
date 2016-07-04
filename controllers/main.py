@@ -7,20 +7,22 @@ main = Blueprint('main', __name__, template_folder = 'templates')
 def main_route():
 	return render_template('main.html')
 
+
+
 main_user = Blueprint('main_user', __name__, template_folder='templates')
 
 @main_user.route('/main/<user>', methods=['GET'])
 def main_user_route(user):
-	# Check if the url is the right url for the current user
-	session_username = session['email'].split('@')[0]
-	if session_username != user:
-		return render_template('403.html'), 403
-
 	# Check if a user is logged in
 	# If not, redirect to the main page for login
 	if 'email' not in session:
 		print 'Not logged in: redirecting to main...'
 		return redirect(url_for('main.main_route'))
+
+	# Check if the url is the right url for the current user
+	session_username = session['email'].split('@')[0]
+	if session_username != user:
+		return render_template('403.html'), 403
 
 	if request.method == 'GET':
 		print 'baguni GET'
@@ -65,10 +67,6 @@ def main_user_route(user):
 
 		return render_template("main_user.html", bagunis = bagunis, user = user)
 
-api_addBaguni = Blueprint('api_addBaguni', __name__)
-
-@api_addBaguni.route('/api/v1/addBaguni', methods=['POST'])
-def api_addBaguni_route():
 	if request.method == 'POST':
 		print 'baguni POST'
 		jsondata = request.get_json()
@@ -98,7 +96,42 @@ def api_addBaguni_route():
 		conn.commit()
 
 		return ('', 200)
-		# return render_template("baguni.html")
+
+
+# api_addBaguni = Blueprint('api_addBaguni', __name__)
+
+# @api_addBaguni.route('/api/v1/addBaguni', methods=['POST'])
+# def api_addBaguni_route():
+# 	if request.method == 'POST':
+# 		print 'baguni POST'
+# 		jsondata = request.get_json()
+# 		baguniName = jsondata['baguniName']
+# 		baguniColor = jsondata['baguniColor']
+
+# 		# Insert into Baguni
+# 		query_addBaguni = 'INSERT INTO Baguni (email, title, color) VALUES (%s, %s, %s)'
+# 		data_addBaguni = [session['email'], baguniName, baguniColor]
+
+# 		conn = mysql.get_db()
+# 		cursor = conn.cursor()
+# 		cursor.execute(query_addBaguni, data_addBaguni)
+# 		conn.commit()
+
+# 		# Get the id of inserted Baguni
+# 		query_getBaguniId = 'SELECT LAST_INSERT_ID()'
+		
+# 		baguniid = cursor.execute(query_getBaguniId)
+# 		baguniid = cursor.fetchall()[0]
+
+# 		# Insert into BaguniAccess the newly added Baguni
+# 		query_addBagAccess = 'INSERT INTO BaguniAccess (email, baguniid) VALUES (%s, %s)'
+# 		data_addBagAccess = [session['email'], baguniid]
+
+# 		cursor.execute(query_addBagAccess, data_addBagAccess)
+# 		conn.commit()
+
+# 		return ('', 200)
+# 		# return render_template("baguni.html")
 
 
 

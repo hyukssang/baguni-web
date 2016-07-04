@@ -31,7 +31,7 @@ CREATE TABLE Item(
 	price DECIMAL(7,2),
 	brandname VARCHAR(20),
 	itemname VARCHAR(40),
-	selected TINYINT(1) DEFAULT 0
+	selected TINYINT(1) DEFAULT 0,
 	PRIMARY KEY (itemid),
 	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE
 );
