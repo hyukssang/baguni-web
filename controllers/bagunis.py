@@ -1,6 +1,7 @@
 from flask import *
 from db import mysql
-import parse
+from parselib import parseCafe24Mall
+
 bagunis = Blueprint('bagunis', __name__, template_folder='templates')
 
 @bagunis.route('/main/<user>/bagunis/<int:baguniid>', methods=['GET', 'POST'])
@@ -45,27 +46,49 @@ def bagunis_route(user, baguniid):
 		db_items = cursor.fetchall()
 
 		items = []
+		checked = ''
 		for db_item in db_items:
 			if db_item[7] == 1:
-				db_item[7] = 'checked'
-			else:
-				db_item[7] = ''
+				checked = 'checked'
+
 			item = {
 				'origurl': db_item[2],
 				'imageurl': db_item[3],
 				'price': db_item[4],
 				'brand': db_item[5],
 				'name': db_item[6],
-				'selected': db_item[7]
+				'selected': checked
 			}
 			items.append(item)
 
 		return render_template("bagunis.html", items = items)
 	if request.method == 'POST':
-		print 123124
-		# Add an item to the current Baguni
+		# Receive json object from ajax request
 		jsondata = request.get_json()
-		print jsondata
+		itemURL = jsondata['itemURL']
+
+		# Parse the url given
+		parseResult = parseCafe24Mall(itemURL)
+		# {
+		# 	'domain': domain,
+		# 	'img': img,
+		# 	'name': name,
+		# 	'price': price,
+		# 	'info': info
+		# }
+
+		# Prepare the rest of data to be inserted
+
+
+		query_addItem = ('INSERT INTO Item(baguniid, originalurl, imageurl, price, '
+						 'brandname, itemname) VALUES (%s,%s,%s,%s,%s,%s)')
+		data_addItem = [baguniid, itemURL, parseResult['img'], parseResult['price'], parseResult['domain'], parseResult['name']]
+
+		conn = mysql.get_db()
+		cursor = conn.cursor()
+		cursor.execute(query_addItem, data_addItem)
+		conn.commit()
+
 		return ('', 200)
 
 

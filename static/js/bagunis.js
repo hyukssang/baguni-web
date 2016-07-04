@@ -14,7 +14,7 @@ $('#btn-add-item').click(function(){
 		contentType: 'application/json; charset=UTF-8',
 		data: jsondata,
 		success:function(data){
-			console.log('Item Added!');
+			location.reload();
 		},
 		error: function(xhr, status, errThrown){
 			console.log(status);
