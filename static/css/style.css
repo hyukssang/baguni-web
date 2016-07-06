@@ -12,6 +12,7 @@ p{
 	font-size: 12px;
 }
 
+/*Custom global setting*/
 .align-left{
 	position: absolute;
 	left: 0;
@@ -20,6 +21,7 @@ p{
 	position: absolute;
 	right: 0;
 }
+/*Background image used at /main*/
 .bg{
 	background-image: url("../img/photo_newyork.png");	
 	background-position: center;
@@ -29,7 +31,7 @@ p{
 	height: 35vh;
 }
 
-/*Navbar*/
+/*Navbar base_navBar.html*/
 .nav-all{
 	list-style-type: none;
 }
@@ -62,6 +64,8 @@ p{
 
 	text-align: justify;
 }
+
+/*Used to evenly space out bottom navbar*/
 .stretch{
 	background-color: black;
 
@@ -74,6 +78,15 @@ p{
 	top: -57px;
 
 	z-index: -1;
+}
+
+/*Custom buttons used at /main, /baguni*/
+.btn-black{
+	background-color: black;
+	color: white;
+}
+.btn-black:hover{
+	color: #d8d8d8;
 }
 .btn-add{
 	background-color: #e8e8e8;
@@ -129,6 +142,7 @@ p{
 	text-align: center;
 }
 
+/*/login, /signup*/
 .form-login{
 	position: absolute;
 	top: 40%;
@@ -141,14 +155,9 @@ p{
 .form-signup input{
 	width: 100%;
 }
-.btn-black{
-	background-color: black;
-	color: white;
-}
-.btn-black:hover{
-	color: #d8d8d8;
-}
-/*First View bags layout*/
+
+
+/*Custom style for /main*/
 .baguni{
 	background-size: auto 100%;
 	background-repeat: no-repeat;
@@ -208,7 +217,7 @@ p{
 	overflow: auto;
 }
 
-/*Second View folders layout*/
+/*Custom style for /baguni*/
 .baguni-inside{
 	background-color: black;
 
@@ -233,8 +242,6 @@ p{
 	text-align: center;
 	line-height: 40px;
 }
-
-
 .price-bar{
 	background-color: black;
 
@@ -255,8 +262,7 @@ p{
 	text-align: left;
 }
 
-
-/*Second View each item layout*/
+/*Style for each item-group at /baguni*/
 .item{
 	border: solid 2px #d8d8d8;
 	border-radius: 8px;
@@ -301,6 +307,8 @@ p{
 	right: 5px;
 	bottom: 5px;
 }
+
+/*Modal at /baguni*/
 .modal-body-nested{
 	display: none;
 }
@@ -313,6 +321,11 @@ p{
 
 	width: 100%;
 }
+
+
+
+
+/*To be used*/
 .half-circle{
 	background-color: green;
 
@@ -360,6 +373,9 @@ p{
 	position: fixed;
 	bottom: 0;
 }
+
+
+
 
 /*Icons*/
 .icon-text{
