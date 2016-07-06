@@ -140,7 +140,16 @@ $('#btn-add-item').click(function(e){
 	
 });
 
-
+$('#btn-add-item').next().click(function(e){
+	$('.modal-body-nested').hide();
+	$('.modal-body-nested img').attr('src', '');
+	$('.modal-body-nested h6:eq(0)>span').text('');
+	$('.modal-body-nested h6:eq(1)>span').text('');
+	$('.modal-body-nested p:eq(0)>span').text('');
+	$('.selector').remove();
+	$('#btn-add-item').text('Parse');
+	$('#input-item-url').prop('disabled', false).val('');
+});
 
 
 
