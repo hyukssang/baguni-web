@@ -28,10 +28,11 @@ CREATE TABLE Item(
 	itemid INTEGER NOT NULL AUTO_INCREMENT,
 	originalurl VARCHAR(256),
 	imageurl VARCHAR(256),
-	price DECIMAL(7,2),
+	price DECIMAL(9,2),
 	brandname VARCHAR(20),
 	itemname VARCHAR(40),
 	selected TINYINT(1) DEFAULT 0,
+	addInfo TINYTEXT,
 	PRIMARY KEY (itemid),
 	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE
 );
@@ -42,4 +43,3 @@ CREATE TABLE ItemAccess(
 	FOREIGN KEY (baguniid) REFERENCES Baguni(baguniid) ON DELETE CASCADE,
 	FOREIGN KEY (itemid) REFERENCES Item(itemid) ON DELETE CASCADE
 );
-

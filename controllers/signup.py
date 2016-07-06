@@ -32,7 +32,8 @@ def signup_route():
 			session['email'] = f['email']
 			session['name'] = f['firstname'] + ' ' + f['lastname']
 			user = f['email'].split('@')[0]
-			return redirect(url_for('main_user.main_user_route', user=user))
+			session['user'] = user
+			return redirect(url_for('main_user.main_user_route', user=session['user']))
 		else:
 			error = 'Email already exists'
 			return render_template('signup.html', error = error)

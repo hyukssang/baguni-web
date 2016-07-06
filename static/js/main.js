@@ -1,5 +1,8 @@
 // Contains Javscript logic used at /main
 
+// var bgHeight = $('.bg').css('height');
+// $('.container-bagunis').css('height', window.innerHeight - bgHeight - 165);
+
 // Adding a new Baguni
 $('#btn-add-baguni').click(function(){
 	var baguniName = $('#input-baguni-name').val();

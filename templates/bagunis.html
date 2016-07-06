@@ -3,13 +3,22 @@
 	<div class="modal fade" id="modal-add-item">
 		<div class="modal-dialog modal-sm">
 		<div class="modal-content">
-			<div class="modal-header"><h4>Add an item!</h4></div>
+			<div class="modal-header">
+				<h4>Add an item!</h4>
+			</div>
 			<div class="modal-body">
 				<h5>Paste the URL of the item to be added:</h5>
 				<input type="text" name="input-item-url" id="input-item-url">
+				<div class="modal-body-nested">
+					<h5>Is this the item you were looking at?</h5>
+					<img src="" alt="">
+					<h6>도메인명: <span></span></h6>
+					<h6>상품명: <span></span></h6>
+					<p>가격(원): <span></span></p>
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-black" id="btn-add-item" data-dismiss="modal">Add</button>
+				<button type="button" class="btn btn-black" id="btn-add-item">Parse</button>
 				<button class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
@@ -34,8 +43,7 @@
 		</div>
 	</div>
 	
-	<!-- SECOND PAGE -->
-	<div class="container">
+	<div class="container container-items">
 		<ul class="items">
 			{% for item in items %}
 				<li class="col-xs-6 item" id="product_id">
@@ -49,10 +57,8 @@
 						<a href="{{ item['origurl'] }}"><img src="{{ item['imageurl'] }}" alt="" class="item-image"></a>
 					</div>
 					<div class="row">
-						<ul>
-							<li class="item-brand">{{ item['brand'] }}</li>
-							<li class="item-name">{{ item['name'] }}</li>
-						</ul>
+						<h5 class="item-brand">{{ item['brand'] }}</h5>
+						<h5 class="item-name">{{ item['name'] }}</h5>
 					</div>
 					<div class="row">
 						<p class="item-price">$<span id="item-price">{{ item['price'] }}</span></p>

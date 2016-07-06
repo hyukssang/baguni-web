@@ -8,6 +8,9 @@ button{
 img{
 	width: 100%;
 }
+p{
+	font-size: 12px;
+}
 
 .align-left{
 	position: absolute;
@@ -193,12 +196,16 @@ img{
 .baguni-numItems{
 	margin-bottom: 0;
 }
-.bagunis{
+.container-bagunis{
 	padding-bottom: 73px;
 	overflow: auto;
 }
 .radio{
 	display: inline-block;
+}
+.container-items{
+	padding-bottom: 73px;
+	overflow: auto;
 }
 
 /*Second View folders layout*/
@@ -293,6 +300,12 @@ img{
 	position: absolute;
 	right: 5px;
 	bottom: 5px;
+}
+.modal-body-nested{
+	display: none;
+}
+.selector{
+	margin-bottom: 10px;
 }
 
 .modal-bg{

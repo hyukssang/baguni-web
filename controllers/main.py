@@ -11,7 +11,7 @@ def main_route():
 
 main_user = Blueprint('main_user', __name__, template_folder='templates')
 
-@main_user.route('/main/<user>', methods=['GET'])
+@main_user.route('/main/<user>', methods=['GET', 'POST'])
 def main_user_route(user):
 	# Check if a user is logged in
 	# If not, redirect to the main page for login
@@ -19,9 +19,8 @@ def main_user_route(user):
 		print 'Not logged in: redirecting to main...'
 		return redirect(url_for('main.main_route'))
 
-	# Check if the url is the right url for the current user
-	session_username = session['email'].split('@')[0]
-	if session_username != user:
+	# Check if the url is the right url for the current user 
+	if session['user'] != user:
 		return render_template('403.html'), 403
 
 	if request.method == 'GET':

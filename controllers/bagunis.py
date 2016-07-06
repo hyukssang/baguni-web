@@ -66,28 +66,39 @@ def bagunis_route(user, baguniid):
 		# Receive json object from ajax request
 		jsondata = request.get_json()
 		itemURL = jsondata['itemURL']
+		curStep = jsondata['step']
 
-		# Parse the url given
-		parseResult = parseCafe24Mall(itemURL)
-		# {
-		# 	'domain': domain,
-		# 	'img': img,
-		# 	'name': name,
-		# 	'price': price,
-		# 	'info': info
-		# }
+		print curStep
 
-		# Prepare the rest of data to be inserted
+		if curStep == 0:
+			# Parse the url given
+			parseResult = parseCafe24Mall(itemURL)
+			# {
+			# 	'domain': domain,
+			# 	'img': img,
+			# 	'name': name,
+			# 	'price': price,
+			# 	'info': info
+			# }
+			return jsonify(
+				checkImage = parseResult['img'],
+				checkBrand = parseResult['domain'],
+				checkName = parseResult['name'],
+				checkPrice = parseResult['price'],
+				moreInfo = parseResult['info']
+			)
+		elif curStep == 1:
+			print jsondata['price']
+			print jsondata['moreInfo']
+			query_addItem = ('INSERT INTO Item(baguniid, originalurl, imageurl, price, '
+							 'brandname, itemname, addInfo) VALUES (%s,%s,%s,%s,%s,%s,%s)')
+			data_addItem = [baguniid, itemURL, jsondata['imageURL'], jsondata['price'], jsondata['brandName'], 
+							jsondata['itemName'], jsondata['moreInfo']]
 
-
-		query_addItem = ('INSERT INTO Item(baguniid, originalurl, imageurl, price, '
-						 'brandname, itemname) VALUES (%s,%s,%s,%s,%s,%s)')
-		data_addItem = [baguniid, itemURL, parseResult['img'], parseResult['price'], parseResult['domain'], parseResult['name']]
-
-		conn = mysql.get_db()
-		cursor = conn.cursor()
-		cursor.execute(query_addItem, data_addItem)
-		conn.commit()
+			conn = mysql.get_db()
+			cursor = conn.cursor()
+			cursor.execute(query_addItem, data_addItem)
+			conn.commit()
 
 		return ('', 200)
 

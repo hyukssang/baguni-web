@@ -38,7 +38,8 @@ def login_route():
 				session['email'] = f['email']
 				session['name'] = result[0][0] + ' ' + result[0][1]
 				user = f['email'].split('@')[0]
-				return redirect(url_for('main_user.main_user_route', user=user))
+				session['user'] = user
+				return redirect(url_for('main_user.main_user_route', user=session['user']))
 		
 		return render_template('login.html', error = error)
 
