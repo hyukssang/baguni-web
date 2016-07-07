@@ -1,9 +1,10 @@
 // Contains Javscript logic used at /bagunis
 
-
+// loading screen
 $('.container-items').css('height', window.innerHeight - 205);
 $('.modal-body-nested').hide();
 
+// ajax settings
 $(document).ajaxStart(function(){
 	$('#btn-add-item').text('Parsing...').prop('disabled', true);
 });
@@ -46,8 +47,8 @@ $(document).ajaxError(function(){
 // Creates a new select tag
 function createSelect(selectTitle, selectElems){
 	var select = $('<div/>', {'class': 'selector'}).append(
-		$('<p/>').append(selectTitle)
-	).append(
+		$('<h6/>').append(selectTitle + ':')
+	).append(' ').append(
 		$('<select/>').append(function(){
 			var elements = $();
 			for(var i = 0; i < selectElems.length; i++){
@@ -83,9 +84,9 @@ $('#btn-add-item').click(function(e){
 			"itemURL": itemURL,
 			"step": step,
 			"imageURL": $('.modal-body-nested img').attr('src'),
-			"price": $('.modal-body-nested p>span').text(),
-			"brandName": $('.modal-body-nested h6:eq(0)>span').text(),
-			"itemName": $('.modal-body-nested h6:eq(1)>span').text(),
+			"price": $('.modal-body-nested p:eq(2)').text(),
+			"brandName": $('.modal-body-nested p:eq(0)').text(),
+			"itemName": $('.modal-body-nested p:eq(1)').text(),
 			"moreInfo": moreInfo
 		}
 	}
@@ -99,20 +100,28 @@ $('#btn-add-item').click(function(e){
 			contentType: 'application/json; charset=UTF-8',
 			data: jsondata,
 			dataType: 'JSON',
-			success: function(data){				
+			success: function(data){	
+				console.log(data.moreInfo);			
 				$('#input-item-url').prop('disabled', true);
 				// Save the result so we don't have to parse once more
 				$('.modal-body-nested img').attr('src', data.checkImage);
-				$('.modal-body-nested h6:eq(0)>span').append(data.checkBrand);
-				$('.modal-body-nested h6:eq(1)>span').append(data.checkName);
-				$('.modal-body-nested p:eq(0)>span').append(data.checkPrice);
+				$('.modal-body-nested h6:eq(0)').after($('<p/>').append(data.checkBrand));
+				$('.modal-body-nested h6:eq(1)').after($('<p/>').append(data.checkName));
+				$('.modal-body-nested h6:eq(2)').after($('<p/>').append(data.checkPrice));
 				
 				// key = size, color, etc
 				// value = M, L, red, yellow, etc.
+				$('.modal-body-nested').append($('<div/>', {'class': 'modal-nested-row'}));
 				for (var key in data.moreInfo){
 					// $('.modal-body-nested').append(addDropdown(key, data.moreInfo[key]));
-					$('.modal-body-nested').append(createSelect(key, data.moreInfo[key]));
+					$('.modal-nested-row:eq(3)').append(
+						createSelect(key, data.moreInfo[key])
+					).append('  ');
+					
 				}
+				$('.modal-nested-row:eq(3)').append(
+					$('<button/>', {type: 'button', 'class': 'btn btn-black btn-xs'}).append('ADD')
+				);
 
 				$('.modal-body-nested').show();
 			},
@@ -140,13 +149,15 @@ $('#btn-add-item').click(function(e){
 	
 });
 
+// Upon closing the modal window
 $('#btn-add-item').next().click(function(e){
 	$('.modal-body-nested').hide();
+	// Reset parsed part
 	$('.modal-body-nested img').attr('src', '');
-	$('.modal-body-nested h6:eq(0)>span').text('');
-	$('.modal-body-nested h6:eq(1)>span').text('');
-	$('.modal-body-nested p:eq(0)>span').text('');
+	$('.modal-body-nested p').remove();
+	$('.modal-nested-row:gt(2)').remove();
 	$('.selector').remove();
+	// Reset footer buttons
 	$('#btn-add-item').text('Parse');
 	$('#input-item-url').prop('disabled', false).val('');
 });

@@ -312,7 +312,11 @@ p{
 .modal-body-nested{
 	display: none;
 }
+.modal-body-nested h6, .modal-body-nested p{
+	display: inline-block;
+}
 .selector{
+	display: inline-block;
 	margin-bottom: 10px;
 }
 
