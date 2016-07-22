@@ -218,7 +218,7 @@ p{
 }
 
 /*Custom style for /baguni*/
-.baguni-inside{
+.baguni-tab{
 	background-color: black;
 
 	overflow-x: scroll;
@@ -228,7 +228,7 @@ p{
 	margin-bottom: 0;
 	padding-top: 40px;
 }
-.baguni-inside li{
+.baguni-tab li{
 	background-color: white;
 
 	border: solid 1px black;
@@ -265,7 +265,7 @@ p{
 /*Style for each item-group at /baguni*/
 .item{
 	border: solid 2px #d8d8d8;
-	border-radius: 8px;
+	/*border-radius: 8px;*/
 
 	padding: 0px;
 }

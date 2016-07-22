@@ -9,30 +9,29 @@
 			</div>
 			<div class="modal-body">
 				<h5>Paste the URL of the item to be added:</h5>
-				<input type="text" name="input-item-url" id="input-item-url">
+				<input type="text" name="modal-input-url" id="modal-input-url">
 				<div class="modal-body-nested">
 					<h5>Is this the item you were looking at?</h5>
 					<img src="" alt="">
-					<div class="modal-nested-row">
-						<h6>도메인명:&nbsp;</h6>	
-					</div>
-					<div class="modal-nested-row">
-						<h6>상품명:&nbsp;</h6>
-					</div>
-					<div class="modal-nested-row">
-						<h6>가격(원):&nbsp;</h6>	
-					</div>
+					<dl class="dl-horizontal">
+						<dt>From</dt>
+						<dd></dd>
+						<dt>Item</dt>
+						<dd></dd>
+						<dt>Price</dt>
+						<dd></dd>
+					</dl>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-black" id="btn-add-item">Parse</button>
+				<button type="button" class="btn btn-black" id="modal-btn-add">Parse</button>
 				<button class="btn btn-default" data-dismiss="modal">Close</button>
 			</div>
 		</div>
 		</div>
 	</div>
 
-	<ul class="baguni-inside">
+	<ul class="baguni-tab">
 		<li class="active"><a href="#">One</a></li><!-- 
 		 --><li class="inactive"><a href="#">Two</a></li><!-- 
 		 --><li class="inactive"><a href="#">Three</a></li><!-- 
@@ -68,7 +67,7 @@
 						<h5 class="item-name">상품명:&nbsp;</h5><p>{{ item['name'] }}</p>
 					</div>
 					<div class="row">
-						<p class="item-price">가격(원): &nbsp;<span id="item-price">{{ item['price'] }}</span></p>
+						<h5 class="item-price">가격(원): &nbsp;</h5><p id="item-price">{{ item['price'] }}</p>
 					</div>
 				</li>
 			{% endfor %}

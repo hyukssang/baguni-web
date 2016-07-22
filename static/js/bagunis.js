@@ -6,14 +6,14 @@ $('.modal-body-nested').hide();
 
 // ajax settings
 $(document).ajaxStart(function(){
-	$('#btn-add-item').text('Parsing...').prop('disabled', true);
+	$('#modal-btn-add').text('Parsing...').prop('disabled', true);
 });
 $(document).ajaxSuccess(function(){
-	$('#btn-add-item').text('Yes!').prop('disabled', false);
+	$('#modal-btn-add').text('Yes!').prop('disabled', false);
 	
 });
 $(document).ajaxError(function(){
-	$('#btn-add-item').text('Parse').prop('disabled', false);
+	$('#modal-btn-add').text('Parse').prop('disabled', false);
 });
 
 // Creates a new dropdown button and menu
@@ -61,9 +61,9 @@ function createSelect(selectTitle, selectElems){
 }
 
 // Adding a new Item
-$('#btn-add-item').click(function(e){
+$('#modal-btn-add').click(function(e){
 	// Prepare the data to be sent to the server
-	var itemURL = $('#input-item-url').val();
+	var itemURL = $('#modal-input-url').val();
 	
 	var step;
 	if($(e.target).text() == 'Parse'){
@@ -84,15 +84,16 @@ $('#btn-add-item').click(function(e){
 			"itemURL": itemURL,
 			"step": step,
 			"imageURL": $('.modal-body-nested img').attr('src'),
-			"price": $('.modal-body-nested p:eq(2)').text(),
-			"brandName": $('.modal-body-nested p:eq(0)').text(),
-			"itemName": $('.modal-body-nested p:eq(1)').text(),
+			"price": $('.modal-body-nested dl dd:eq(2)').text(),
+			"brandName": $('.modal-body-nested dl dd:eq(0)').text(),
+			"itemName": $('.modal-body-nested dl dd:eq(1)').text(),
 			"moreInfo": moreInfo
 		}
 	}
 	var jsondata = JSON.stringify(data);
 	console.log(jsondata);
 	
+	// For Parsing the url and retrieving item info
 	if (step == 0){
 		$.ajax({
 			url: window.location.pathname,
@@ -102,25 +103,25 @@ $('#btn-add-item').click(function(e){
 			dataType: 'JSON',
 			success: function(data){	
 				console.log(data.moreInfo);			
-				$('#input-item-url').prop('disabled', true);
+				$('#modal-input-url').prop('disabled', true);
 				// Save the result so we don't have to parse once more
 				$('.modal-body-nested img').attr('src', data.checkImage);
-				$('.modal-body-nested h6:eq(0)').after($('<p/>').append(data.checkBrand));
-				$('.modal-body-nested h6:eq(1)').after($('<p/>').append(data.checkName));
-				$('.modal-body-nested h6:eq(2)').after($('<p/>').append(data.checkPrice));
+				$('.modal-body-nested dl dd:eq(0)').append(data.checkBrand);
+				$('.modal-body-nested dl dd:eq(1)').append(data.checkName);
+				$('.modal-body-nested dl dd:eq(2)').append(data.checkPrice);
 				
 				// key = size, color, etc
 				// value = M, L, red, yellow, etc.
 				$('.modal-body-nested').append($('<div/>', {'class': 'modal-nested-row'}));
 				for (var key in data.moreInfo){
 					// $('.modal-body-nested').append(addDropdown(key, data.moreInfo[key]));
-					$('.modal-nested-row:eq(3)').append(
+					$('.modal-nested-row').append(
 						createSelect(key, data.moreInfo[key])
 					).append('  ');
 					
 				}
-				$('.modal-nested-row:eq(3)').append(
-					$('<button/>', {type: 'button', 'class': 'btn btn-black btn-xs'}).append('ADD')
+				$('.modal-nested-row').append(
+					$('<button/>', {type: 'button', 'class': 'btn btn-black btn-xs', id: 'modal-nested-btn-add'}).append('ADD')
 				);
 
 				$('.modal-body-nested').show();
@@ -130,7 +131,7 @@ $('#btn-add-item').click(function(e){
 				$('.modal-body h5').first().text('Parsing failed. Please try again!');
 			}
 		});		
-	}
+	}// For Actually inserting the info into the database
 	else{
 		$.ajax({
 			url: window.location.pathname,
@@ -149,17 +150,33 @@ $('#btn-add-item').click(function(e){
 	
 });
 
+$('#modal-nested-btn-add').click(function(){
+	if($('.modal-nested-row ul').length){
+		$('.modal-body-nested').append(
+			$('<div/>', {'class': 'modal-nested-row'}).append(
+				$('<ul/>', {'class': 'modal-nested-list-items'})
+			)
+		);
+	}
+	// $('.modal-nested-list-items').append(function(){
+	// 	var iteminfo = []
+	// 	$('.modal-nested-row .selector').each(function(){
+	// 		$(this).
+	// 	});
+	// })
+});
+
 // Upon closing the modal window
-$('#btn-add-item').next().click(function(e){
+$('#modal-btn-add').next().click(function(e){
 	$('.modal-body-nested').hide();
 	// Reset parsed part
 	$('.modal-body-nested img').attr('src', '');
-	$('.modal-body-nested p').remove();
-	$('.modal-nested-row:gt(2)').remove();
+	$('.modal-body-nested dd').text('');
+	$('.modal-nested-row').remove();
 	$('.selector').remove();
 	// Reset footer buttons
-	$('#btn-add-item').text('Parse');
-	$('#input-item-url').prop('disabled', false).val('');
+	$('#modal-btn-add').text('Parse');
+	$('#modal-input-url').prop('disabled', false).val('');
 });
 
 

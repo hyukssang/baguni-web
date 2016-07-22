@@ -80,19 +80,27 @@ def bagunis_route(user, baguniid):
 			# 	'price': price,
 			# 	'info': info
 			# }
+
+			parseSuccess = parseResult[0]
+			parseError = parseResult[1]
+			parseInfo = parseResult[2]
+			print parseError
+			print parseInfo
+			
 			return jsonify(
-				checkImage = parseResult['img'],
-				checkBrand = parseResult['domain'],
-				checkName = parseResult['name'],
-				checkPrice = parseResult['price'],
-				moreInfo = parseResult['info']
+				errorMessage = parseError,
+				checkImage = parseInfo['img'],
+				checkBrand = parseInfo['domain'],
+				checkName = parseInfo['name'],
+				checkPrice = parseInfo['price'],
+				moreInfo = parseInfo['info']
 			)
 		elif curStep == 1:
 			print jsondata['price']
 			print jsondata['moreInfo']
 			query_addItem = ('INSERT INTO Item(baguniid, originalurl, imageurl, price, '
 							 'brandname, itemname, addInfo) VALUES (%s,%s,%s,%s,%s,%s,%s)')
-			data_addItem = [baguniid, itemURL, jsondata['imageURL'], jsondata['price'], jsondata['brandName'], 
+			data_addItem = [baguniid, itemURL, jsondata['imageURL'], jsondata['price'], jsondata['brandName'],
 							jsondata['itemName'], jsondata['moreInfo']]
 
 			conn = mysql.get_db()
@@ -101,17 +109,3 @@ def bagunis_route(user, baguniid):
 			conn.commit()
 
 		return ('', 200)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
